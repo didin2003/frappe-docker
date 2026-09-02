@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://github.com/bizaxl/erpnext.git",
+    "branch": "main"
+  },
+  {
+    "url": "https://github.com/bizaxl/hrms.git",
+    "branch": "main"
+  },
+  {
+    "url": "https://github.com/bizaxl/payments.git",
+    "branch": "main"
+  }
+]
