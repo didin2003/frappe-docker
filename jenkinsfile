@@ -7,7 +7,7 @@ pipeline {
         IMAGE_TAG = "${BUILD_NUMBER}"
         GITOPS_REPO = "https://github.com/didin2003/laravel-kubernetes.git"
     }
-    
+
     stages {
 
         stage('Checkout Frappe Docker') {
