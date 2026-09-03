@@ -75,8 +75,18 @@ pipeline {
                       git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/backendby/kubernetes-k8s.git
                       cd kubernetes-k8s/clusters/k8s-master/apps/erpnext/
 
+                      echo "Updating Helm image tag to ${IMAGE_TAG}"
 
-		      sed -i "s|^\([[:space:]]*tag:[[:space:]]*\).*|\1\"${IMAGE_TAG}\"|" values.yaml
+                      awk -v tag="${IMAGE_TAG}" '
+                      /^[[:space:]]*tag:/ {
+                      sub(/:.*/, ": \\"" tag "\\"")
+                      }
+                      { print }
+                      ' values.yaml > values.yaml.tmp
+
+                      mv values.yaml.tmp values.yaml
+
+                      echo "Updated values.yaml:"
 
 	              git config user.name "Didin PG"
 	              git config user.email "didinpg8080@gmail.com"
