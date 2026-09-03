@@ -65,6 +65,29 @@ pipeline {
                 }
             }
         }
+	stage('Update Helm Image') {
+    	    steps {
+	        withCredentials([usernamePassword(credentialsId: 'git-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_TOKEN')]) {
+                   sh '''
+            	      set -e
+
+            	      rm -rf kubernetes-k8s
+                      git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/backendby/kubernetes-k8s.git
+                      cd kubernetes-k8s/clusters/k8s-master/apps/erpnext/
+
+
+		      sed -i "s|^\([[:space:]]*tag:[[:space:]]*\).*|\1\"${IMAGE_TAG}\"|" values.yaml
+
+            	      git config user.name "Didin PG"
+            	      git config user.email "didinpg8080@gmail.com"
+
+            	      git add values.yaml
+            	      git commit -m "Update Frappe image to ${IMAGE_TAG}"
+             	      git push origin dev 
+               '''
+               }
+            }
+        }
     }
     post {
     always {
