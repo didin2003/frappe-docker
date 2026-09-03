@@ -31,6 +31,7 @@ pipeline {
                         echo "Starting Frappe Docker build..."
 
                         docker buildx build \
+                          --no-cache \
                           --secret id=apps_json,src=apps.json \
                           --secret id=github_token,env=GITHUB_TOKEN \
                           -f images/custom/Containerfile \
