@@ -5,7 +5,6 @@ pipeline {
         DOCKER_REGISTRY = 'didin8080'
         IMAGE_FULL_NAME = "didin8080/frappe-build-test"
         IMAGE_TAG = "${BUILD_NUMBER}"
-        GITOPS_REPO = "https://github.com/didin2003/laravel-kubernetes.git"
     }
 
     stages {
@@ -81,6 +80,8 @@ pipeline {
                       git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/backendbysuraj/kubernetes-k8s.git
                       cd kubernetes-k8s/clusters/k8s-master/apps/erpnext/
 
+                      git checkout Dev
+
                       echo "Updating Helm image tag to ${IMAGE_TAG}"
 
                       awk -v tag="${IMAGE_TAG}" '
@@ -99,7 +100,6 @@ pipeline {
 
 	              git add values.yaml
 	              git commit -m "Update Frappe image to ${IMAGE_TAG}"
-                      git checkout Dev
 	              git push origin Dev
                '''
                }
