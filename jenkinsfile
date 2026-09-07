@@ -78,7 +78,7 @@ pipeline {
 	      set -e
 
 	              rm -rf kubernetes-k8s
-                      git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/backendby/kubernetes-k8s.git
+                      git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/backendbysuraj/kubernetes-k8s.git
                       cd kubernetes-k8s/clusters/k8s-master/apps/erpnext/
 
                       echo "Updating Helm image tag to ${IMAGE_TAG}"
