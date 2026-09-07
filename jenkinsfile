@@ -99,6 +99,7 @@ pipeline {
 
 	              git add values.yaml
 	              git commit -m "Update Frappe image to ${IMAGE_TAG}"
+                      git checkout Dev
 	              git push origin Dev
                '''
                }
