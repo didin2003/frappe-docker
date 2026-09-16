@@ -31,6 +31,8 @@ pipeline {
                 ]) {
                     sh '''
                         set -e
+                        echo "Deleting old Docker images"
+                        docker image prune -af
 
                         echo "Starting Frappe Docker build..."
 
