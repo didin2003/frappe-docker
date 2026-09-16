@@ -31,6 +31,10 @@ pipeline {
                 ]) {
                     sh '''
                         set -e
+
+                        echo "Deleting the build Cache"
+                        docker buildx prune -af
+
                         echo "Deleting old Docker images"
                         docker image prune -af
 
