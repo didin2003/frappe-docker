@@ -42,6 +42,7 @@ pipeline {
 
                         docker buildx build \
                           --no-cache \
+                          --progress=plain \
                           --secret id=apps_json,src=apps.json \
                           --secret id=github_token,env=GITHUB_TOKEN \
                           -f images/custom/Containerfile \
